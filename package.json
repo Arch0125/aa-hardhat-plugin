@@ -1,8 +1,8 @@
 {
-  "name": "hardhat-ts-plugin-boilerplate",
+  "name": "aa-hardhat",
   "version": "0.0.1",
-  "description": "Hardhat TypeScript plugin boilerplate",
-  "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
+  "description": "Account abstraction plugin for hardhat",
+  "repository": "https://github.com/Arch0125/aa-hardhat-plugin",
   "author": "Nomic Labs LLC",
   "license": "MIT",
   "main": "dist/src/index.js",
