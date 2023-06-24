@@ -27,11 +27,12 @@ const InitAA = async (hre: HardhatRuntimeEnvironment) => {
       owner,
       factoryAddress,
     });
+    const scwaddr =  await walletAPI.getAccountAddress()
     console.log("Owner Address : ", wallets[i].address);
     console.log("Owner Private Key : ", wallets[i].privateKey);
     console.log(
       "Smart Contract Wallet Address : ",
-      await walletAPI.getAccountAddress()
+     scwaddr
     );
     console.log("");
   }
