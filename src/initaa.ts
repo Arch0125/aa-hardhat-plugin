@@ -1,7 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { task } from "hardhat/config";
 import { ethers } from "ethers";
-import { SimpleAccountAPI } from "@account-abstraction/sdk";
 
 const InitAA = async (hre: HardhatRuntimeEnvironment) => {
   const mnemonic = "test test test test test test test test test test test junk";
@@ -19,20 +18,16 @@ const InitAA = async (hre: HardhatRuntimeEnvironment) => {
     wallets.push(wallet);
   }
 
+  const factory = new ethers.Contract("SimpleAccountFactory",'0x9406Cc6185a346906296840746125a0E44976454',provider)
+
   for (let i = 0; i < 10; i++) {
     const owner = wallets[i];
-    const walletAPI = new SimpleAccountAPI({
-      provider,
-      entryPointAddress,
-      owner,
-      factoryAddress,
-    });
-    const scwaddr =  await walletAPI.getAccountAddress()
+    await factory.createAccount(owner.address, "");
     console.log("Owner Address : ", wallets[i].address);
     console.log("Owner Private Key : ", wallets[i].privateKey);
     console.log(
       "Smart Contract Wallet Address : ",
-     scwaddr
+      await factory.getAddress(owner.address,'')
     );
     console.log("");
   }
