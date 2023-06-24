@@ -1,6 +1,6 @@
 {
   "name": "aa-hardhat",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Account abstraction plugin for hardhat",
   "repository": "https://github.com/Arch0125/aa-hardhat-plugin",
   "author": "Nomic Labs LLC",
@@ -49,6 +49,7 @@
   "dependencies": {
     "@account-abstraction/sdk": "^0.6.0",
     "chalk": "^5.2.0",
-    "cli-color": "^2.0.3"
+    "cli-color": "^2.0.3",
+    "ethers": "^5.7.2"
   }
 }
