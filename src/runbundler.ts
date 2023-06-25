@@ -8,7 +8,7 @@ import clc from "cli-color";
 export const RunBundler = (hre:HardhatRuntimeEnvironment) => {
     return new Promise((resolve, reject) => {
         const child = spawn('sh', ['-c', 'cd ./node_modules/hardhat-aa/src/bundler && yarn && yarn preprocess && yarn hardhat-deploy --network localhost && yarn run bundler --unsafe']);
-
+        console.log(clc.whiteBright.bgGreen(`Bundler is starting...`));
         child.stdout.on('data', (data) => {
             console.log(clc.whiteBright.bgGreen(`STDOUT`));
             console.log(`${data}`);
