@@ -1,6 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { task } from "hardhat/config";
 import { ethers } from "ethers";
+import factoryinterface from "./factoryinterface.json";
 
 const InitAA = async (hre: HardhatRuntimeEnvironment) => {
   const mnemonic = "test test test test test test test test test test test junk";
@@ -18,17 +19,24 @@ const InitAA = async (hre: HardhatRuntimeEnvironment) => {
     wallets.push(wallet);
   }
 
-  const factory = new ethers.Contract("SimpleAccountFactory",'0x9406Cc6185a346906296840746125a0E44976454',provider)
-
+  
   for (let i = 0; i < 10; i++) {
-    const owner = wallets[i];
-    await factory.createAccount(owner.address, "");
+    let owner = wallets[i];
+    let signer = new ethers.Wallet(owner.privateKey, provider);
+    let factory = new ethers.Contract("0x9406Cc6185a346906296840746125a0E44976454",factoryinterface.abi,signer)
+    await factory.createAccount(wallets[i].address,ethers.BigNumber.from('0'))
+    let scw = await factory.getAddress(wallets[i].address,ethers.BigNumber.from('0'))
     console.log("Owner Address : ", wallets[i].address);
     console.log("Owner Private Key : ", wallets[i].privateKey);
     console.log(
       "Smart Contract Wallet Address : ",
-      await factory.getAddress(owner.address,'')
+      scw
     );
+    await signer.sendTransaction({
+      to: scw,
+      value: ethers.utils.parseEther("100.0"),
+    })
+    console.log("Smart Contract Wallet Balance : ", ethers.utils.formatEther(await provider.getBalance(scw)));
     console.log("");
   }
 };
