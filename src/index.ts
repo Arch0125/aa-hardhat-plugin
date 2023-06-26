@@ -8,7 +8,8 @@ import "./initaa";
 import InitAA from "./initaa";
 import "./runbundler";
 import { RunBundler } from "./runbundler";
-
+import { DeployFactory } from "./deployfactory";
+import './deployfactory';
 extendConfig(
   (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) => {
     const userPath = userConfig.paths?.newPath;
@@ -31,4 +32,5 @@ extendConfig(
 extendEnvironment((hre) => {
   hre.initaa=InitAA;
   hre.runbundler=RunBundler;
+  hre.deployfactory = DeployFactory;
 });

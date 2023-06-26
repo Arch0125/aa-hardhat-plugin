@@ -19,5 +19,8 @@ declare module "hardhat/types/runtime" {
     runbundler: (
       hre:HardhatRuntimeEnvironment
     )=>Promise<unknown>;
+    deployfactory: (
+      hre:HardhatRuntimeEnvironment
+    )=>Promise<unknown>;
   }
 }

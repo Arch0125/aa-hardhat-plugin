@@ -1,20 +1,15 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { task } from "hardhat/config";
-import "@nomiclabs/hardhat-ethers";
-import {exec} from "child_process";
 import { spawn } from "child_process";
 import clc from "cli-color";
 
-export const RunBundler = (hre:HardhatRuntimeEnvironment) => {
+export const DeployFactory = (hre:HardhatRuntimeEnvironment) => {
     return new Promise((resolve, reject) => {
-        const child = spawn('sh', ['-c', `cd ${__dirname}/../../src/bundler && yarn && yarn preprocess && yarn hardhat-deploy --network localhost && yarn run bundler --unsafe`]);
-        console.log(clc.whiteBright.bgGreen(`Bundler is starting...`));
+        const child = spawn('sh', ['-c', `cp ${__dirname}/../../src/helper/BNPairingPrecompileCostEstimator.sol ${__dirname}/../../src/account-abstraction/contracts/samples/bls/lib/hubble-contracts/contracts/libs && cd ${__dirname}/../../src/account-abstraction && yarn && yarn deploy --network dev `]);
+        console.log(clc.whiteBright.bgGreen(`Deploying Entrypoint and Factory...`));
         child.stdout.on('data', (data) => {
             console.log(clc.whiteBright.bgGreen(`STDOUT`));
             console.log(`${data}`);
-            if(data.includes('running on http://localhost:3000/rpc')){
-                console.log(clc.bgGreen.whiteBright.bold(`Bundler is running on http://localhost:3000/rpc`));
-            }
         });
 
         child.stderr.on('data', (data) => {
@@ -41,6 +36,6 @@ export const RunBundler = (hre:HardhatRuntimeEnvironment) => {
 
 
 
-task("runbundler", "An example task").setAction(async (_, hre) => {
-    await RunBundler(hre);
+task("deployfactory", "Deploy Entrypoint and Factory").setAction(async (_, hre) => {
+    await DeployFactory(hre);
 });
