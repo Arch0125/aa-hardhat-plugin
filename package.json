@@ -1,6 +1,6 @@
 {
-  "name": "hardhat-aa",
-  "version": "0.6.4",
+  "name": "hh-acc-abs-toolkit",
+  "version": "1.0.0",
   "description": "Account abstraction plugin for hardhat",
   "repository": "https://github.com/Arch0125/aa-hardhat-plugin",
   "author": "Nomic Labs LLC",
