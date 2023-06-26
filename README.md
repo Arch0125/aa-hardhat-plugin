@@ -1,58 +1,68 @@
-# Hardhat TypeScript plugin boilerplate
+# hardhat-account-abstraction-toolkit
 
-This is a sample Hardhat plugin written in TypeScript. Creating a Hardhat plugin
-can be as easy as extracting a part of your config into a different file and
-publishing it to npm.
+An npm package for account abstraction tooling in Hardhat.
 
-This sample project contains an example on how to do that, but also comes with
-many more features:
+[Hardhat](https://hardhat.org) plugin example.
 
-- A mocha test suite ready to use
-- TravisCI already setup
-- A package.json with scripts and publishing info
-- Examples on how to do different things
+## What
+
+The hardhat-account-abstraction-toolkit is a plugin that provides a set of tools and commands to enable account abstraction in Hardhat. It simplifies the process of deploying and managing smart contract wallets, as well as deploying entrypoints and account factory contracts.
 
 ## Installation
 
-To start working on your project, just run
+To install the hardhat-account-abstraction-toolkit plugin, follow these steps:
+Incase of peer dependecy issues use --force
 
 ```bash
-npm install
+npm install hh-acc-abs-toolkit --save-dev
 ```
 
-## Plugin development
+Import the plugin in your `hardhat.config.js`:
 
-Make sure to read our [Plugin Development Guide](https://hardhat.org/advanced/building-plugins.html) to learn how to build a plugin.
+```js
+require("hh-acc-abs-toolkit");
+```
 
-## Testing
+Or if you are using TypeScript, in your `hardhat.config.ts`:
 
-Running `npm run test` will run every test located in the `test/` folder. They
-use [mocha](https://mochajs.org) and [chai](https://www.chaijs.com/),
-but you can customize them.
+```ts
+import "hh-acc-abs-toolkit";
+```
 
-We recommend creating unit tests for your own modules, and integration tests for
-the interaction of the plugin with Hardhat and its dependencies.
+## Required plugins
 
-## Linting and autoformat
+This plugin requires the following Hardhat plugin:
 
-All of Hardhat projects use [prettier](https://prettier.io/) and
-[tslint](https://palantir.github.io/tslint/).
+- [@nomiclabs/hardhat-web3](https://github.com/nomiclabs/hardhat/tree/master/packages/hardhat-web3)
 
-You can check if your code style is correct by running `npm run lint`, and fix
-it with `npm run lint:fix`.
+Make sure to install and configure the required plugins before using the account abstraction toolkit.
 
-## Building the project
+## Tasks
 
-Just run `npm run build` ️👷
+This plugin introduces the following tasks to Hardhat:
 
-## README file
+- `initaa`: Deploys and funds smart contract wallets.
+- `runbundler`: Runs a bundler locally.
+- `deployfactory`: Deploys entrypoint and simple account factory contracts.
 
-This README describes this boilerplate project, but won't be very useful to your
-plugin users.
+## Environment extensions
 
-Take a look at `README-TEMPLATE.md` for an example of what a Hardhat plugin's
-README should look like.
+This plugin extends the Hardhat Runtime Environment by adding the `accountAbstraction` field, which provides access to account abstraction-related functionalities.
 
-## Migrating from Buidler?
+## Configuration
 
-Take a look at [the migration guide](MIGRATION.md)!
+The hardhat-account-abstraction-toolkit does not require additional configuration. 
+
+## Usage
+
+To use the account abstraction toolkit, follow these steps:
+
+1. Run the command `npx hardhat initaa` to deploy and fund smart contract wallets.
+2. Run the command `npx hardhat runbundler` to run a bundler locally.
+3. Run the command `npx hardhat deployfactory` to deploy entrypoint and account factory contracts.
+
+Make sure to have the necessary plugins installed and configured before using these commands.
+
+## License
+
+This npm package is licensed under the [MIT License](LICENSE).
