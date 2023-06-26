@@ -1,12 +1,13 @@
 {
   "name": "hh-acc-abs-toolkit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Account abstraction plugin for hardhat",
   "repository": "https://github.com/Arch0125/aa-hardhat-plugin",
   "author": "Nomic Labs LLC",
   "license": "MIT",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "homepage": "https://github.com/Arch0125/aa-hardhat-plugin#readme",
   "keywords": [
     "ethereum",
     "smart-contracts",
